@@ -4,6 +4,7 @@ import boto3
 import requests
 import teams
 from src.nba_scraper.utils import create_table_from_json, delete_table_resource_api, create_file_path
+import players
 
 team_ids = teams.get_team_ids();
 
@@ -60,4 +61,5 @@ def scrape_nba_team_players(team_id, season):
 
 
 # 运行爬虫（以凯尔特人为例）
-scrape_nba_team_players(1610612746, "2024-25")
+data = players.find_player_career_stats(201935)
+print(data)

@@ -1,5 +1,4 @@
 from nba_api.stats.endpoints import scoreboardv2
-from datetime import datetime, timedelta
 
 
 def get_tomorrow_games():
@@ -39,7 +38,7 @@ def get_yesterday_player_stats():
   scoreboard = ScoreboardV2(game_date=game_date)
   games = scoreboard.get_dict()['resultSets'][0]['rowSet']
 
-  game_ids = [game[2] for game in games if game[4] == 'Final']  # 获取已结束比赛的 GAME_ID 列表
+  game_ids = [game[2] for game in games if game[4].strip() == 'Final']  # 获取已结束比赛的 GAME_ID 列表
   all_player_stats = []
 
   # 遍历每场比赛
@@ -62,6 +61,3 @@ def get_yesterday_player_stats():
     time.sleep(1)
 
   return all_player_stats
-
-
-
